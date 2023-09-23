@@ -1,27 +1,20 @@
 class AppBar extends HTMLElement {
-  constructor() {
-    super();
+  connectedCallback () {
+    this.render()
   }
 
-  connectedCallback() {
-    this.render();
-  }
-
-  render() {
+  render () {
     this.innerHTML = `
         <a href="#mainContent" tabindex="0" class="skip-content"
-        >Skip To Content</a
-      >
+        >Skip To Content</a>
       <nav class="nav">
         <div class="logo">
           <img src="./images/resto-radar-icon.svg" alt="ikon resto radar" />
           <h1><a href="/">Radar Resto</a></h1>
         </div>
         <button class="menu-button" id="menu" title="Toogle Menu" aria-label="Toogle Menu">
-            <i class="fas fa-bars"></i>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              height="1.5em"
               viewBox="0 0 448 512">
               <style>
                 svg {
@@ -38,8 +31,8 @@ class AppBar extends HTMLElement {
           <li><a href="https://www.linkedin.com/in/mohamadripalperdiansyah/">About Us</a></li>
         </ul>
       </nav>
-    `;
+    `
   }
 }
 
-customElements.define('app-bar', AppBar);
+customElements.define('app-bar', AppBar)
