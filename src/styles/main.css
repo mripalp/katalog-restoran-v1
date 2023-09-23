@@ -31,6 +31,7 @@ body {
   background-color: white;
   position: fixed;
   width: 100%;
+  height: 4.375rem;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   z-index: 99;
 }
@@ -59,9 +60,9 @@ body {
 }
 
 .logo h1 {
-  position: relative;
-  top: -0.1em;
-  left: -0.1em;
+  /* position: relative; */
+  top: 0.6em;
+  left: 0.1em;
   text-decoration: none;
   text-transform: uppercase;
   font-weight: 700;
@@ -74,21 +75,21 @@ body {
 }
 
 .logo h1 a {
-  font-size: 2.2rem;
+  font-size: 2rem;
 }
 
 .nav a {
   display: inline-block;
   color: var(--primary-color);
   margin: 7px;
-  width: fit-content;
   text-decoration: none;
   font-size: 1.2rem;
   font-weight: bold;
+  min-width: 44px;
+  min-height: 44px;
 }
 
 .nav-list a:hover {
-  border-bottom: 2px solid var(--primary-color);
   transition: 5.5 ease-in;
   color: rgba(7, 81, 116, 0.5);
 }
@@ -238,12 +239,18 @@ footer p {
 
 .skip-content {
   position: absolute;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-align: center;
   top: -50px;
   left: 0;
+  text-decoration: none;
   background-color: var(--primary-color);
   color: white;
   padding: 8px;
   z-index: 100;
+  min-width: 44px;
+  min-height: 44px;
 }
 
 .skip-content:focus {
@@ -273,12 +280,16 @@ footer p {
     transition: transform 0.3s ease;
   }
 
-  .nav-list li {
-    margin: 20px;
+  button > svg {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .nav-list a {
+    cursor: default;
   }
 
   .logo {
-    align-items: center;
     justify-content: start;
     margin: 9px;
   }
@@ -288,13 +299,8 @@ footer p {
     max-height: 50px;
   }
 
-  .logo h1 {
-    width: fit-content;
-    height: fit-content;
-  }
-
   .logo h1 a {
-    font-size: 18px;
+    font-size: 23px;
   }
 
   .open {
@@ -306,9 +312,7 @@ footer p {
     background-color: transparent;
     border: 0;
     display: block;
-    cursor: pointer;
     color: var(--primary-color);
-    z-index: 3;
     padding-right: 2rem;
     min-width: 44px;
     min-height: 44px;
@@ -330,6 +334,12 @@ footer p {
   .menu-button {
     display: none;
   }
+  .logo h1 a {
+    font-size: 1.2rem;
+  }
+  .nav a {
+    font-size: 1.1rem;
+  }
 }
 
 @media screen and (min-width: 600px) {
@@ -338,6 +348,9 @@ footer p {
     grid-template-columns: repeat(2, 1fr);
     gap: 5px;
     margin: auto 6rem;
+  }
+  .logo h1 a {
+    font-size: 1.5rem;
   }
 }
 

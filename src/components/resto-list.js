@@ -1,22 +1,23 @@
-import DATA from '../public/data/DATA.json';
+import DATA from '../public/data/DATA.json'
 
 class RestoList extends HTMLElement {
-  constructor() {
-    super();
+  // eslint-disable-next-line no-useless-constructor
+  constructor () {
+    super()
   }
 
-  connectedCallback() {
-    this.render();
+  connectedCallback () {
+    this.render()
   }
 
-  render() {
+  render () {
     const getExploreRestaurant = (data) => {
-      const restaurantList = document.getElementById('list');
+      const restaurantList = document.getElementById('list')
       const restaurantHTML = data.restaurants
         .map(
           (restaurant) => `
           
-            <div class="resto-item">
+            <div class="resto-item" tabindex="0">
                 <div class="card">
                   <div class="card-img">
                     <img
@@ -60,12 +61,12 @@ class RestoList extends HTMLElement {
               </div>
         `
         )
-        .join('');
-      restaurantList.innerHTML = restaurantHTML;
-    };
+        .join('')
+      restaurantList.innerHTML = restaurantHTML
+    }
 
-    getExploreRestaurant(DATA);
+    getExploreRestaurant(DATA)
   }
 }
 
-customElements.define('resto-list', RestoList);
+customElements.define('resto-list', RestoList)

@@ -1,13 +1,9 @@
 class AppHero extends HTMLElement {
-  constructor() {
-    super();
+  connectedCallback () {
+    this.render()
   }
 
-  connectedCallback() {
-    this.render();
-  }
-
-  render() {
+  render () {
     this.innerHTML = `
       <div class="hero">
         <img src="./images/heros/hero-image_2.jpg" alt="Banyak makanan diatas meja" />
@@ -15,8 +11,8 @@ class AppHero extends HTMLElement {
           <img src="./images/resto-radar.png" alt="logo resto radar" />
         </div>
       </div>
-    `;
+    `
   }
 }
 
-customElements.define('app-hero', AppHero);
+customElements.define('app-hero', AppHero)
