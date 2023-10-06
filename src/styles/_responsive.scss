@@ -1,0 +1,178 @@
+@use 'variable';
+
+@mixin devices($breakpoint) {
+  @each $breakpoints, $size in variable.$media {
+    @if $breakpoint ==$breakpoints {
+      @media screen and (min-width: $size) {
+        @content;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 499px) {
+  .nav-list {
+    cursor: default;
+    position: fixed;
+    color: variable.$primary-color;
+    background-color: white;
+    margin-top: 60px;
+    top: 0;
+    right: -25px;
+    height: 100%;
+    width: 200px;
+    flex-direction: column;
+    align-items: flex-end;
+    display: list-item;
+    text-align: center;
+    padding: 20px;
+    z-index: 10;
+    -webkit-transform: translate(200px, 0);
+    transform: translate(200px, 0);
+    transition: transform 0.3s ease;
+
+    a {
+      cursor: default;
+    }
+  }
+
+  .nav {
+    background-color: white;
+  }
+
+  .drink p,
+  .food p {
+    font-size: 1rem;
+  }
+
+  .resto-item-detail {
+    width: 90%;
+  }
+
+  .favorite-button {
+    font-size: 0.5rem;
+    width: 66px;
+    height: 66px;
+  }
+
+  .name-review {
+    font-size: 1rem;
+    margin: 0;
+    padding: 3px auto;
+  }
+
+  .date-review {
+    margin: 0;
+    padding: 20px auto;
+  }
+
+  .body-review {
+    font-size: 1rem;
+    margin: 0;
+    padding: 10px;
+  }
+
+  .list-food,
+  .list-drink {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  button {
+    >svg {
+      min-width: 44px;
+      min-height: 44px;
+    }
+  }
+
+  .logo {
+    justify-content: start;
+    margin: 9px;
+
+    img {
+      max-width: 50px;
+      max-height: 50px;
+    }
+
+    h1 {
+      a {
+        font-size: 23px;
+      }
+    }
+  }
+
+  .open {
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+
+  .menu-button {
+    background-color: transparent;
+    border: 0;
+    display: block;
+    color: variable.$primary-color;
+    padding-right: 2rem;
+    min-width: 44px;
+    min-height: 44px;
+
+    i {
+      font-size: 1.25rem;
+    }
+  }
+}
+
+@include devices(mobile-normal) {
+  .resto-list {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 5px;
+    margin: auto 6rem;
+  }
+
+  .menu-button {
+    display: none;
+  }
+
+  .logo {
+    h1 {
+      a {
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  .nav {
+    a {
+      font-size: 1.1rem;
+    }
+  }
+}
+
+@include devices(mobile-large) {
+  .resto-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+    margin: auto 6rem;
+  }
+
+  .logo {
+    h1 {
+      a {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
+
+@include devices(tablet) {
+  .resto-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@include devices(laptop) {
+  main {
+    max-width: 1200px;
+  }
+}
