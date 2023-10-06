@@ -1,20 +1,24 @@
-import 'regenerator-runtime' /* for async await transpile */
-import '../styles/main.css'
-import '../components/app-bar.js'
-import '../components/app-hero.js'
-import '../components/resto-list.js'
+import 'regenerator-runtime';
+import '../styles/main.scss';
+import './views/components/app-bar';
+import './views/components/app-hero';
+import './views/components/app-footer';
+import '../styles/fontawesome-icon';
 
-const hamburgerButtonElement = document.querySelector('#menu')
-const drawerElement = document.querySelector('#drawer')
-const mainElement = document.querySelector('main')
+import App from './views/app';
+import swRegister from './utils/sw-register';
 
-hamburgerButtonElement.addEventListener('click', (event) => {
-  drawerElement.classList.add('menu')
-  drawerElement.classList.toggle('open')
-  event.stopPropagation()
-})
+const app = new App({
+  button: document.querySelector('#menu'),
+  drawer: document.querySelector('#drawer'),
+  content: document.querySelector('#mainContent'),
+});
 
-mainElement.addEventListener('click', (event) => {
-  drawerElement.classList.remove('open')
-  event.stopPropagation()
-})
+window.addEventListener('hashchange', () => {
+  app.renderPage();
+});
+
+window.addEventListener('load', async () => {
+  app.renderPage();
+  await swRegister();
+});

@@ -1,0 +1,22 @@
+@use "variable";
+
+%list-food-drink {
+  background-color: white;
+  border-radius: 5px;
+  color: black;
+
+  box-shadow:
+    1px 1px 5px rgba(0, 0, 0, 0.1),
+    -1px -1px 5px rgba(0, 0, 0, 0.1);
+
+  p {
+    font-size: 1.3rem;
+    padding: 5px;
+    text-align: center;
+  }
+
+  &:hover {
+    background-color: variable.$primary-color;
+    color: white;
+  }
+}
