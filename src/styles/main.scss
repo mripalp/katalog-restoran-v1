@@ -1,6 +1,20 @@
-@use "variable";
-@use "responsive";
-@use "extends";
+$primary-color: #075174;
+$media: (
+  "mobile-normal": 500px,
+  "mobile-large": 600px,
+  "tablet": 950px,
+  "laptop": 1200px
+);
+
+@mixin devices($breakpoint) {
+  @each $breakpoints, $size in $media {
+    @if $breakpoint ==$breakpoints {
+      @media screen and (min-width: $size) {
+        @content;
+      }
+    }
+  }
+}
 
 * {
   padding: 0;
@@ -43,13 +57,13 @@ main {
 
   &-colored {
     background-color: white;
-    color: variable.$primary-color;
+    color: $primary-color;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   }
 
   a {
     display: flex;
-    color: variable.$primary-color;
+    color: $primary-color;
     margin: 15px 20px;
     text-decoration: none;
     font-weight: 600;
@@ -78,7 +92,7 @@ main {
     text-decoration: none;
     text-transform: uppercase;
     font-weight: 700;
-    color: variable.$primary-color;
+    color: $primary-color;
     width: 100%;
 
     a {
@@ -152,7 +166,7 @@ main {
   text-align: center;
   font-size: 32px;
   font-weight: 500;
-  color: variable.$primary-color;
+  color: $primary-color;
 }
 
 .resto-list {
@@ -198,7 +212,7 @@ main {
         display: inline-block;
         min-height: 44px;
         min-width: 44px;
-        color: variable.$primary-color;
+        color: $primary-color;
         text-decoration: none;
 
         &:hover {
@@ -213,14 +227,14 @@ main {
       font-size: 1.1em;
       margin: 1em;
       font-weight: 700;
-      color: variable.$primary-color;
+      color: $primary-color;
     }
 
     .text-city {
       font-size: 14px;
       font-weight: 700;
       margin-left: 4em;
-      color: variable.$primary-color;
+      color: $primary-color;
     }
 
     .description {
@@ -231,7 +245,7 @@ main {
       display: -webkit-box;
       -webkit-line-clamp: 4;
       -webkit-box-orient: vertical;
-      color: variable.$primary-color;
+      color: $primary-color;
     }
   }
 }
@@ -243,13 +257,13 @@ main {
   width: 70%;
 
   h3 {
-    color: variable.$primary-color;
+    color: $primary-color;
     text-align: center;
     font-size: 2rem;
   }
 
   .name-resto {
-    color: variable.$primary-color;
+    color: $primary-color;
     text-shadow: 0 2px 1px black;
     text-align: center;
     font-size: 2.5rem;
@@ -272,12 +286,12 @@ main {
 
     .rating {
       font-size: 1.2rem;
-      color: variable.$primary-color;
+      color: $primary-color;
     }
 
     .city {
       font-size: 1.2rem;
-      color: variable.$primary-color;
+      color: $primary-color;
     }
   }
 
@@ -295,7 +309,7 @@ main {
     margin: 20px 0;
 
     h2 {
-      color: variable.$primary-color;
+      color: $primary-color;
       text-align: center;
       font-size: 1.5rem;
       margin: 10px 0;
@@ -340,6 +354,27 @@ main {
         -webkit-box-orient: vertical;
       }
     }
+  }
+}
+
+%list-food-drink {
+  background-color: white;
+  border-radius: 5px;
+  color: black;
+
+  box-shadow:
+    1px 1px 5px rgba(0, 0, 0, 0.1),
+    -1px -1px 5px rgba(0, 0, 0, 0.1);
+
+  p {
+    font-size: 1.3rem;
+    padding: 5px;
+    text-align: center;
+  }
+
+  &:hover {
+    background-color: $primary-color;
+    color: white;
   }
 }
 
@@ -389,7 +424,7 @@ footer {
   top: -50px;
   left: 0;
   text-decoration: none;
-  background-color: variable.$primary-color;
+  background-color: $primary-color;
   color: white;
   padding: 8px;
   z-index: 100;
@@ -398,5 +433,172 @@ footer {
 
   &:focus {
     top: 0;
+  }
+}
+
+@media screen and (max-width: 499px) {
+  .nav-list {
+    cursor: default;
+    position: fixed;
+    color: $primary-color;
+    background-color: white;
+    margin-top: 60px;
+    top: 0;
+    right: -25px;
+    height: 100%;
+    width: 200px;
+    flex-direction: column;
+    align-items: flex-end;
+    display: list-item;
+    text-align: center;
+    padding: 20px;
+    z-index: 10;
+    -webkit-transform: translate(200px, 0);
+    transform: translate(200px, 0);
+    transition: transform 0.3s ease;
+
+    a {
+      cursor: default;
+    }
+  }
+
+  .nav {
+    background-color: white;
+  }
+
+  .drink p,
+  .food p {
+    font-size: 1rem;
+  }
+
+  .resto-item-detail {
+    width: 90%;
+  }
+
+  .favorite-button {
+    font-size: 0.5rem;
+    width: 66px;
+    height: 66px;
+  }
+
+  .name-review {
+    font-size: 1rem;
+    margin: 0;
+    padding: 3px auto;
+  }
+
+  .date-review {
+    margin: 0;
+    padding: 20px auto;
+  }
+
+  .body-review {
+    font-size: 1rem;
+    margin: 0;
+    padding: 10px;
+  }
+
+  .list-food,
+  .list-drink {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  button {
+    > svg {
+      min-width: 44px;
+      min-height: 44px;
+    }
+  }
+
+  .logo {
+    justify-content: start;
+    margin: 9px;
+
+    img {
+      max-width: 50px;
+      max-height: 50px;
+    }
+
+    h1 {
+      a {
+        font-size: 23px;
+      }
+    }
+  }
+
+  .open {
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+
+  .menu-button {
+    background-color: transparent;
+    border: 0;
+    display: block;
+    color: $primary-color;
+    padding-right: 2rem;
+    min-width: 44px;
+    min-height: 44px;
+
+    i {
+      font-size: 1.25rem;
+    }
+  }
+}
+
+@include devices(mobile-normal) {
+  .resto-list {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 5px;
+    margin: auto 6rem;
+  }
+
+  .menu-button {
+    display: none;
+  }
+
+  .logo {
+    h1 {
+      a {
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  .nav {
+    a {
+      font-size: 1.1rem;
+    }
+  }
+}
+
+@include devices(mobile-large) {
+  .resto-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+    margin: auto 6rem;
+  }
+
+  .logo {
+    h1 {
+      a {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
+
+@include devices(tablet) {
+  .resto-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@include devices(laptop) {
+  main {
+    max-width: 1200px;
   }
 }

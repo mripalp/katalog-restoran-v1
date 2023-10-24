@@ -6,7 +6,10 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   entry: {
@@ -21,7 +24,7 @@ module.exports = {
     rules: [
       {
         test: /.s?css$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: [devMode ? MiniCssExtractPlugin.loader : 'style-loader', 'css-loader', 'sass-loader'],
       },
       {
         test: /\.(jpe?g|png|gif|svg|ico)$/i,
@@ -34,6 +37,9 @@ module.exports = {
       filename: 'index.html',
       template: path.resolve(__dirname, 'src/templates/index.html'),
     }),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+    }),
     new CopyWebpackPlugin({
       patterns: [
         {
@@ -45,7 +51,9 @@ module.exports = {
         },
       ],
     }),
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: true,
+    }),
     new WorkboxWebpackPlugin.GenerateSW({
       swDest: './sw.bundle.js',
       runtimeCaching: [
@@ -61,16 +69,32 @@ module.exports = {
         },
       ],
     }),
-    new BundleAnalyzerPlugin({
-      analyzerMode: 'server',
+    new FaviconsWebpackPlugin({
+      logo: './src/public/images/resto-radar.png', // svg works too!
+      mode: 'webapp', // optional can be 'webapp', 'light' or 'auto' - 'auto' by default
+      devMode: 'webapp', // optional can be 'webapp' or 'light' - 'light' by default
+      manifest: './src/public/images/manifest.webmanifest',
+      favicons: {
+        appName: 'Radar Resto',
+        appDescription: 'Cari Temukan Rasakan',
+        background: '#fff',
+        theme_color: '#075174',
+        icons: {
+          coast: false,
+          yandex: false,
+          android: true,
+          appleIcon: true,
+          windows: false,
+          appleStartup: false,
+        },
+      },
     }),
   ],
   optimization: {
     minimizer: [
       new TerserPlugin(),
       new CssMinimizerPlugin({
-        minify: CssMinimizerPlugin.cssoMinify,
-        parallel: true,
+        minify: CssMinimizerPlugin.cssnanoMinify,
       }),
       new ImageMinimizerPlugin({
         minimizer: {
