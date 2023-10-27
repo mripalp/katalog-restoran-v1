@@ -54,7 +54,7 @@ const createRestaurantItemTemplate = (restaurant) => `
 <div class="resto-item" tabindex="0">
     <div class="card">
         <div class="card-img">
-            <img crossorigin="anonymous" src="${CONFIG.BASE_IMAGE_URL + restaurant.pictureId}" alt="${restaurant.name}" />
+            <img crossorigin="anonymous" width="100%" height="200px" src="${CONFIG.BASE_IMAGE_URL + restaurant.pictureId}" alt="${restaurant.name}" />
         </div>
         <div class="body">
             <h3 class="title">
