@@ -8,6 +8,7 @@ const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const devMode = process.env.NODE_ENV !== 'production';
 
@@ -46,7 +47,7 @@ module.exports = {
           from: path.resolve(__dirname, 'src/public/'),
           to: path.resolve(__dirname, 'dist/assets'),
           globOptions: {
-            ignore: ['**/resto-radar.png'],
+            ignore: ['**/resto-radar.png', '**/heros/**'],
           },
         },
       ],
@@ -89,6 +90,10 @@ module.exports = {
         },
       },
     }),
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'static',
+      openAnalyzer: false,
+    }),
   ],
   optimization: {
     minimizer: [
@@ -127,6 +132,28 @@ module.exports = {
           },
         },
       }),
+
     ],
+    splitChunks: {
+      chunks: 'all',
+      minSize: 30000,
+      maxSize: 70000,
+      minChunks: 1,
+      maxAsyncRequests: 30,
+      maxInitialRequests: 30,
+      automaticNameDelimiter: '~',
+      enforceSizeThreshold: 50000,
+      cacheGroups: {
+        defaultVendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true,
+        },
+      },
+    },
   },
 };

@@ -14,6 +14,8 @@ const config = {
   // The test environment that will be used for testing
   testEnvironment: 'jsdom',
 
+  testRunner: 'jest-jasmine2',
+
   // A map from regular expressions to paths to transformers
   transform: {
     '^.+\\.(js|ts)$': 'babel-jest',
