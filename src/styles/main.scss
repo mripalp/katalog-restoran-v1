@@ -55,20 +55,23 @@ main {
   height: 4.375rem;
   z-index: 99;
 
-  &-colored {
-    background-color: white;
-    color: $primary-color;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  }
-
   a {
     display: flex;
-    color: $primary-color;
+    color: #fff;
     margin: 15px 20px;
     text-decoration: none;
     font-weight: 600;
     min-width: 44px;
     min-height: 44px;
+  }
+
+  &-colored {
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+
+    a {
+      color: $primary-color;
+    }
   }
 }
 
@@ -123,18 +126,19 @@ main {
 }
 
 .hero {
-  display: flex;
   align-items: center;
   background-color: black;
   background-position: center;
 
-  img {
-    top: 0;
-    filter: blur(2px);
-    width: 100%;
-    height: 100vh;
-    object-fit: cover;
-    opacity: 0.3;
+  picture {
+    img {
+      top: 0;
+      filter: blur(2px);
+      width: 100%;
+      height: 100vh;
+      object-fit: cover;
+      opacity: 0.3;
+    }
   }
 }
 
@@ -145,6 +149,7 @@ main {
   width: 100%;
   color: white;
   position: absolute;
+  top: 150px;
 
   img {
     filter: blur(0px);
@@ -201,7 +206,7 @@ main {
   .body {
     padding: 15px;
 
-    .title {
+    .resto-title {
       font-size: 1.3rem;
       font-weight: 700;
       width: fit-content;
@@ -399,6 +404,21 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.no-favorite-container {
+  display: flex;
+  justify-content: center;
+  margin: 25px auto;
+  flex-wrap: wrap;
+}
+
+.resto-item__not__found {
+  font-size: 1.7rem;
+  font-family: Poppins, sans-serif;
+  text-align: center;
+  max-width: 100%;
+  color: $primary-color;
 }
 
 footer {
