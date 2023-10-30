@@ -493,6 +493,11 @@ footer {
     }
   }
 
+  .hero-title img {
+    max-width: 270px;
+    max-height: 270px;
+  }
+
   .drink p,
   .food p {
     font-size: 1rem;
@@ -569,6 +574,15 @@ footer {
 
     i {
       font-size: 1.25rem;
+    }
+  }
+
+  footer {
+    padding: 1.3em 0;
+
+    p {
+      font-size: 1.3em;
+      line-height: 1.6;
     }
   }
 }
