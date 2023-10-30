@@ -4,6 +4,8 @@ import './views/components/app-bar';
 import './views/components/app-hero';
 import './views/components/app-footer';
 import '../styles/fontawesome-icon';
+import 'lazysizes';
+import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 
 import App from './views/app';
 import swRegister from './utils/sw-register';

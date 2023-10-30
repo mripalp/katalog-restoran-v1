@@ -6,7 +6,11 @@ class AppHero extends HTMLElement {
   render() {
     this.innerHTML = `
       <div class="hero">
-        <img src="./assets/images/heros/hero-image_2.jpg" alt="Banyak makanan diatas meja" />
+      <picture>
+        <source media="(max-width: 600px)" srcset="./assets/images/hero-image/hero-image_2-small.jpg">
+        <img src='./assets/images/hero-image/hero-image_2-large.jpg' 
+             alt="Banyak makanan diatas meja">
+      </picture>
         <div class="hero-title">
           <img src="./assets/images/resto-radar.svg" alt="logo resto radar" />
         </div>
